@@ -6,6 +6,10 @@ const scene = new THREE.Scene();
 const light = new THREE.HemisphereLight(0xffffff, 0xcccccc, 1);
 scene.add(light);
 
+// 地面を作成
+scene.add(new THREE.GridHelper());
+scene.add(new THREE.AxesHelper());
+
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
