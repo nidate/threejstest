@@ -39,7 +39,9 @@ resetRotation(group);
 function createCube(width, height, depth) {
   const geometry = new THREE.BoxBufferGeometry(width, height, depth);
   const material = new THREE.MeshLambertMaterial({
-    color: parseInt(0x999999 + 0x555555 * Math.random())
+    color: parseInt(0x999999 + 0x555555 * Math.random()),
+    transparent: true,
+    opacity: 0.8
   });
   const cube = new THREE.Mesh(geometry, material);
   return cube;
