@@ -8,6 +8,7 @@ scene.add(light);
 
 // 地面を作成
 scene.add(new THREE.GridHelper(100, 100, 100));
+// x-赤, Y-緑, Z-青
 scene.add(new THREE.AxesHelper(100, 100, 100));
 
 const camera = new THREE.PerspectiveCamera(
@@ -32,9 +33,9 @@ const cube = createCube(10, 13, 2.5);
 group.add(cube);
 
 const resetCamera = () => {
-  camera.position.z = 0;
-  camera.position.x = 20;
-  camera.position.y = 20;
+  camera.position.z = 10;
+  camera.position.x = 0;
+  camera.position.y = 10;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 };
 const resetRotation = obj => {
