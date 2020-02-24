@@ -51,30 +51,18 @@ function main() {
 }
 main();
 
-document.addEventListener('mousemove', (event) => {
+document.addEventListener('mousemove', event => {
   //console.log(event);
 });
 
-let ctrlKey = false;
-window.addEventListener('keydown', function(event) {
-  if (event.ctrlKey) {
-    ctrlKey = true;
-  }
-});
-window.addEventListener('keyup', function(event) {
-  if (event.ctrlKey) {
-    ctrlKey = false;
-  }
-});
-
 // 二本指ドラッグで視点移動
-document.addEventListener('wheel', (ev) => {
+document.addEventListener('wheel', ev => {
   const V = 0.1;
   camera.position.x += ev.deltaX * V;
-  if (ctrlKey) {
-    camera.position.z += ev.deltaY * V;
-  } else {
+  if (ev.ctrlKey) {
     camera.position.y += ev.deltaY * V;
+  } else {
+    camera.position.z += ev.deltaY * V;
   }
   camera.lookAt(new THREE.Vector3(0, 0, 0));
   ev.preventDefault();
