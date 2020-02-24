@@ -21,17 +21,6 @@ const camera = new THREE.PerspectiveCamera(
 const group = new THREE.Group();
 scene.add(group);
 
-function createCube(width, height, depth) {
-  const geometry = new THREE.BoxBufferGeometry(width, height, depth);
-  const material = new THREE.MeshLambertMaterial({
-    color: parseInt(0x999999 + 0x555555 * Math.random())
-  });
-  const cube = new THREE.Mesh(geometry, material);
-  return cube;
-}
-const cube = createCube(10, 13, 2.5);
-group.add(cube);
-
 const resetCamera = () => {
   camera.position.z = 10;
   camera.position.x = 0;
@@ -46,6 +35,26 @@ const resetRotation = obj => {
 
 resetCamera();
 resetRotation(group);
+
+function createCube(width, height, depth) {
+  const geometry = new THREE.BoxBufferGeometry(width, height, depth);
+  const material = new THREE.MeshLambertMaterial({
+    color: parseInt(0x999999 + 0x555555 * Math.random())
+  });
+  const cube = new THREE.Mesh(geometry, material);
+  return cube;
+}
+let cube = createCube(10, 13, 2.5);
+group.add(cube);
+cube = createCube(10, 13, 2.5);
+cube.position.x += 10;
+group.add(cube);
+cube = createCube(10, 13, 2.5);
+cube.position.y += 13;
+group.add(cube);
+cube = createCube(10, 13, 2.5);
+cube.position.z += 2.5;
+group.add(cube);
 
 function main() {
   renderer.render(scene, camera);
