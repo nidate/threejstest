@@ -22,9 +22,9 @@ const group = new THREE.Group();
 scene.add(group);
 
 const resetCamera = () => {
-  camera.position.z = 10;
+  camera.position.z = 40;
   camera.position.x = 0;
-  camera.position.y = 10;
+  camera.position.y = 20;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 };
 const resetRotation = obj => {
@@ -73,9 +73,9 @@ document.addEventListener('wheel', ev => {
   const V = 0.1;
   camera.position.x += ev.deltaX * V;
   if (ev.ctrlKey) {
-    camera.position.y += ev.deltaY * V;
-  } else {
     camera.position.z += ev.deltaY * V;
+  } else {
+    camera.position.y += ev.deltaY * V;
   }
   camera.lookAt(new THREE.Vector3(0, 0, 0));
   ev.preventDefault();
