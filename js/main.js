@@ -7,8 +7,8 @@ const light = new THREE.HemisphereLight(0xffffff, 0xcccccc, 1);
 scene.add(light);
 
 // 地面を作成
-scene.add(new THREE.GridHelper());
-scene.add(new THREE.AxesHelper());
+scene.add(new THREE.GridHelper(100, 100, 100));
+scene.add(new THREE.AxesHelper(100, 100, 100));
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -20,27 +20,28 @@ const camera = new THREE.PerspectiveCamera(
 const group = new THREE.Group();
 scene.add(group);
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshLambertMaterial({
-  color: parseInt(0x999999 + 0x555555 * Math.random())
-});
-const cube = new THREE.Mesh(geometry, material);
-
-
+function createCube(width, height, depth) {
+  const geometry = new THREE.BoxBufferGeometry(width, height, depth);
+  const material = new THREE.MeshLambertMaterial({
+    color: parseInt(0x999999 + 0x555555 * Math.random())
+  });
+  const cube = new THREE.Mesh(geometry, material);
+  return cube;
+}
+const cube = createCube(10, 13, 2.5);
 group.add(cube);
 
-
 const resetCamera = () => {
-  camera.position.z = 5;
-  camera.position.x = 0;
-  camera.position.y = 10;
+  camera.position.z = 0;
+  camera.position.x = 20;
+  camera.position.y = 20;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
-}
-const resetRotation = (obj) => {
+};
+const resetRotation = obj => {
   obj.rotation.x = 0;
   obj.rotation.y = 0;
   obj.rotation.z = 0;
-}
+};
 
 resetCamera();
 resetRotation(group);
@@ -81,7 +82,7 @@ window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 27: // ESC
       resetRotation(group);
-      break
+      break;
     case 37: // ←
       group.rotation.y += V;
       break;
